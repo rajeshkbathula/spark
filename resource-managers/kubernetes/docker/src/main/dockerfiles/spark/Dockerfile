@@ -53,6 +53,13 @@ COPY data /opt/spark/data
 
 ENV SPARK_HOME /opt/spark
 
+ENV SPARK_HOME /opt/spark
+
+ADD https://repo1.maven.org/maven2/org/apache/hadoop/hadoop-aws/3.2.0/hadoop-aws-3.2.0.jar $SPARK_HOME/jars
+ADD https://repo1.maven.org/maven2/com/amazonaws/aws-java-sdk-bundle/1.11.704/aws-java-sdk-bundle-1.11.704.jar $SPARK_HOME/jars
+RUN chmod 644 $SPARK_HOME/jars/hadoop-aws-3.2.0.jar
+RUN chmod 644 $SPARK_HOME/jars/aws-java-sdk-bundle-1.11.704.jar
+
 WORKDIR /opt/spark/work-dir
 RUN chmod g+w /opt/spark/work-dir
 RUN chmod a+x /opt/decom.sh
